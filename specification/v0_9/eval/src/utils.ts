@@ -14,6 +14,10 @@
  limitations under the License.
  */
 
+import * as fs from "fs";
+import * as path from "path";
+import { logger } from "./logger";
+
 export function extractJsonFromMarkdown(markdown: string): any[] {
   const jsonBlockRegex = /```json\s*([\s\S]*?)\s*```/g;
   const matches = [...markdown.matchAll(jsonBlockRegex)];
@@ -41,4 +45,35 @@ export function extractJsonFromMarkdown(markdown: string): any[] {
     }
   }
   return results;
+}
+
+// 保存 prompt 到本地文件
+export function savePromptToFile(
+  type: string,
+  modelName: string,
+  promptName: string,
+  promptContent: string
+) {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const fileName = `llm_prompts_${timestamp}.json`;
+  const filePath = path.resolve(__dirname, "..", fileName);
+
+  const logEntry = JSON.stringify({
+    timestamp: new Date().toISOString(),
+    type,
+    model: modelName,
+    promptName,
+    prompt: promptContent,
+  });
+
+  fs.appendFileSync(filePath, logEntry + "\n");
+  logger.info(`[Prompt Saved] ${type} -> ${fileName}`);
+}
+
+// 保存 prompt 到本地文件
+export function saveTextToFile(text: string) {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const fileName = `llm_prompts_${timestamp}.json`;
+  const filePath = path.resolve(__dirname, "..", fileName);
+  fs.appendFileSync(filePath, text + "\n");
 }

@@ -47,6 +47,9 @@ importers:
       js-yaml:
         specifier: ^4.1.1
         version: 4.1.1
+      openai:
+        specifier: ^4.70.0
+        version: 4.104.0(zod@3.25.76)
       winston:
         specifier: ^3.19.0
         version: 3.19.0
@@ -3428,7 +3431,7 @@ snapshots:
   '@types/jsonwebtoken@9.0.10':
     dependencies:
       '@types/ms': 2.1.0
-      '@types/node': 22.19.11
+      '@types/node': 20.19.33
 
   '@types/long@4.0.2': {}
 

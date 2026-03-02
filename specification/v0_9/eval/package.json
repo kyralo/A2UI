@@ -7,9 +7,11 @@
     "build": "tsc",
     "eval": "dotenv -- tsx src/index.ts",
     "evalAll": "pnpm run eval --clean-results",
-    "evalGemini": "pnpm run eval --model=gemini-3-flash --clean-results",
-    "evalGpt": "pnpm run eval --model=gpt-5-mini --clean-results",
-    "evalClaude": "pnpm run eval --model=claude-4-sonnet --clean-results",
+    "eval_gemini": "pnpm run eval --model=gemini-3-flash --clean-results",
+    "eval_gpt": "pnpm run eval --model=gpt-5-mini --clean-results",
+    "eval_claude": "pnpm run eval --model=claude-4-sonnet --clean-results",
+    "eval_qwen": "pnpm run eval --model=qwen-plus --clean-results",
+    "eval_doubao": "pnpm run eval --model=doubao-seed-1-8-251228 --clean-results",
     "start": "genkit start",
     "genkit:dev": "genkit start -- tsx --watch src/dev.ts",
     "format": "prettier --write src/**/*.ts"
@@ -42,6 +44,7 @@
     "genkitx-anthropic": "^0.25.0",
     "js-yaml": "^4.1.1",
     "winston": "^3.19.0",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "openai": "^4.70.0"
   }
 }

@@ -15,10 +15,25 @@
  */
 
 import { googleAI } from "@genkit-ai/google-genai";
+import { openAI } from "@genkit-ai/compat-oai";
 import { configure } from "genkit";
 
+// 默认使用千问 API（通过 OpenAI 兼容模式）
+// 如需使用其他模型，请设置对应的环境变量
+const openaiApiKey = process.env.OPENAI_API_KEY;
+const openaiBaseUrl = process.env.OPENAI_BASE_URL;
+const openaiModel = process.env.OPENAI_MODEL;
+
+const openaiPlugin = openAI({
+  apiKey: openaiApiKey,
+  baseURL: openaiBaseUrl,
+  models: [
+    { name: openaiModel, info: modelInfo, configSchema: schema },
+  ],
+});
+
 export default configure({
-  plugins: [googleAI()],
+  plugins: [googleAI(), openaiPlugin],
   logLevel: "debug",
   enableTracingAndMetrics: true,
 });

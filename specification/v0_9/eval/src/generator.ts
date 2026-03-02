@@ -23,13 +23,14 @@ import { rateLimiter } from "./rateLimiter";
 import { logger } from "./logger";
 import * as fs from "fs";
 import * as path from "path";
+import { saveTextToFile } from './utils';
 
 export class Generator {
   constructor(
     private schemas: any,
     private outputDir?: string,
     private catalogRules?: string,
-  ) {}
+  ) { }
 
   async run(
     prompts: TestPrompt[],
@@ -104,6 +105,8 @@ export class Generator {
       let error = null;
 
       if (text) {
+        saveTextToFile(text)
+
         try {
           components = extractJsonFromMarkdown(text);
           if (this.outputDir) {
@@ -172,9 +175,9 @@ description: ${prompt.description}
 name: ${prompt.name}
 prompt: |
 ${prompt.promptText
-  .split("\n")
-  .map((line) => "  " + line)
-  .join("\n")}
+        .split("\n")
+        .map((line) => "  " + line)
+        .join("\n")}
 ---
 `;
     let jsonlBody = "";

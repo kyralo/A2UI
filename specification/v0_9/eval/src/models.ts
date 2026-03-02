@@ -97,4 +97,18 @@ export const modelsToTest: ModelConfiguration[] = [
     requestsPerMinute: 50,
     tokensPerMinute: 50000,
   },
+  {
+    model: openAI.model("doubao-seed-1-8-251228"),
+    name: "doubao-seed-1-8-251228",
+    config: { thinkingConfig: { thinkingBudget: 0 } },
+    requestsPerMinute: 4000,
+    tokensPerMinute: 4000000,
+  },
+  {
+    model: openAI.model("qwen-plus"),
+    name: "qwen-plus",
+    config: { thinkingConfig: { thinkingBudget: 0 } },
+    requestsPerMinute: 4000,
+    tokensPerMinute: 4000000,
+  },
 ];
